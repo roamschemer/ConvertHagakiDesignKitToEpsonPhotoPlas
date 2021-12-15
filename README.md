@@ -1,0 +1,2 @@
+# ConvertHagakiDesignKitToEpsonPhotoPlas
+はがきデザインキットから出力したCSVファイルをEpsonPhoto+で読み込めるように変換するツールです。
