@@ -43,7 +43,11 @@ var epsonDatas = hagakiDesignKitDatas.Select(x => new EpsonData() {
     JointTitleOfHonor4 = x.JointTitleOfHonor4,
     JointTitleOfHonor5 = x.JointTitleOfHonor5,
 });
-var exportFilePath = "export\\address_list.csv";
+var exportDirectory = "export";
+if (!Directory.Exists(exportDirectory)) {
+    Directory.CreateDirectory(exportDirectory);
+}
+var exportFilePath = $"{exportDirectory}\\epson_photo_plas_address_list_{DateTime.Now.ToString("yyyyMMdd_HHmmssfff")}.csv";
 using (var writer = new StreamWriter(exportFilePath, false, Encoding.GetEncoding("shift_jis")))
 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture)) {
     csv.WriteRecords(epsonDatas);
