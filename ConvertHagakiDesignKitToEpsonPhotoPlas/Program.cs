@@ -16,19 +16,18 @@ using (var reader = new StreamReader(new FileStream(importFilePath, FileMode.Ope
 using (var csv = new CsvReader(reader, configuration)) {
     hagakiDesignKitDatas = csv.GetRecords<HagakiDesignKitData>().ToList();
 }
-
 var epsonDatas = hagakiDesignKitDatas.Select(x => new EpsonData() {
     FamilyName = x.FamilyName,
     GivenName = x.GivenName,
     Furigana = x.Furigana1 + x.Furigana2,
     TitleOfHonor = x.TitleOfHonor,
-    PostalCode=x.PostalCode,
+    PostalCode = x.PostalCode,
     Address1 = x.Address1 + x.Address2 + x.Address3,
     Address2 = x.Address4,
     CompanyName = x.CompanyName,
     DepartmentName = x.DepartmentName,
-    JobTitle=x.JobTitle,
-    JointFamilyName1=x.JointFamilyName1,
+    JobTitle = x.JobTitle,
+    JointFamilyName1 = x.JointFamilyName1,
     JointFamilyName2 = x.JointFamilyName2,
     JointFamilyName3 = x.JointFamilyName3,
     JointFamilyName4 = x.JointFamilyName4,
@@ -44,7 +43,6 @@ var epsonDatas = hagakiDesignKitDatas.Select(x => new EpsonData() {
     JointTitleOfHonor4 = x.JointTitleOfHonor4,
     JointTitleOfHonor5 = x.JointTitleOfHonor5,
 });
-
 var exportFilePath = "export\\address_list.csv";
 using (var writer = new StreamWriter(exportFilePath, false, Encoding.GetEncoding("shift_jis")))
 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture)) {
