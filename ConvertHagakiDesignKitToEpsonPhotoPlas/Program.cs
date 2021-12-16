@@ -56,10 +56,7 @@ try {
     });
     if (!epsonDatas.Any())
         throw new Exception("読み込むことができませんでした。もう一度はがきデザインキットから出力したCSVファイルでお試しください。");
-    var exportDirectory = "export";
-    if (!Directory.Exists(exportDirectory))
-        Directory.CreateDirectory(exportDirectory);
-    var exportFilePath = $"{exportDirectory}\\epson_photo_plas_address_list_{DateTime.Now.ToString("yyyyMMdd_HHmmssfff")}.csv";
+    var exportFilePath = $"epson_photo_plas_address_list_{DateTime.Now.ToString("yyyyMMdd_HHmmssfff")}.csv";
     using (var writer = new StreamWriter(exportFilePath, false, Encoding.GetEncoding("shift_jis")))
     using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture)) {
         csv.WriteRecords(epsonDatas);
